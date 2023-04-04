@@ -20,8 +20,6 @@ const GlobalStyle = createGlobalStyle`
     margin: 0;
     padding: 0;
     border: 0;
-    font-size: 100%;
-    font: inherit;
     vertical-align: baseline;
   }
   /* HTML5 display-role reset for older browsers */
@@ -55,11 +53,15 @@ const GlobalStyle = createGlobalStyle`
     box-sizing: border-box;
   }
   body {
-    font-family: 'Source Sans Pro',serif;
+    font-family: 'Source Sans Pro', sans-serif;
+    background-color:${(props) => props.theme.bgColor};
+    color:${(props) => props.theme.textColor}
   }
   a {
     text-decoration: none;
+    color: inherit;
   }
+  
 `
 
 function App() {
