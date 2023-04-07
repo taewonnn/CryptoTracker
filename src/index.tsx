@@ -4,6 +4,8 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import {ThemeProvider} from "styled-components";
 import {theme} from "./theme";
+import {RouterProvider} from "react-router-dom";
+import router from "./routes/Rotuer";
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -11,7 +13,8 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
     <ThemeProvider theme={theme}>
-    <App />
+      <RouterProvider router={router} />
+      {/*<App />*/}
     </ThemeProvider>
   </React.StrictMode>
 );
