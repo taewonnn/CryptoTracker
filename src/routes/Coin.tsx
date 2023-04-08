@@ -180,7 +180,7 @@ export default function Coin() {
               <span>{priceInfo?.max_supply}</span>
             </OverviewItem>
           </Overview>
-
+          <Outlet />
         </>
       )}
       </Container>

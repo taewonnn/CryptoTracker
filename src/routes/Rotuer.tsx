@@ -3,31 +3,14 @@ import Coins from "./Coins";
 import Coin from "./Coin";
 import Chart from "./Chart"
 import Price from "./Price"
-import App from "../App";
 
-
-// export default function Router () {
-//   return (
-//     <BrowserRouter>
-//       <Routes>
-//         <Route path="/" element={<Coins />}/>
-//         <Route path="/:coinId" element={<Coin/>} />
-//         <Route path="chart" element={<Chart />} />
-//         <Route path="price" element={<Price />} />
-//       </Routes>
-//     </BrowserRouter>
-//   )
-// }
-
-
-const router = createBrowserRouter(
-  [
+const router = createBrowserRouter([
     {
       path: "/",
-      element: <Coins />,
+      element: <Coins/>,
     },
     {
-      path: "/:coinID",
+      path: "/:coinId",
       element: <Coin />,
       children: [
         {
@@ -37,11 +20,9 @@ const router = createBrowserRouter(
         {
           path: "price",
           element: <Price />,
-        },
-      ],
-    },
-  ],
-  { basename: "/reactMasterCrypto" }
-);
+        }
+      ]
+    }
+  ]);
 
 export default router;

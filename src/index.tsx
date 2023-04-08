@@ -13,8 +13,8 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
     <ThemeProvider theme={theme}>
+      <App />
       <RouterProvider router={router} />
-      {/*<App />*/}
     </ThemeProvider>
   </React.StrictMode>
 );
