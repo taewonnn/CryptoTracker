@@ -1,4 +1,4 @@
-import {Outlet, Route, Routes, useLocation, useParams} from "react-router-dom";
+import {Link, Outlet, Route, Routes, useLocation, useMatch, useParams} from "react-router-dom";
 import React, {useEffect, useState} from "react";
 import styled from "styled-components";
 import Chart from ".//Chart"
@@ -49,6 +49,29 @@ const OverviewItem = styled.div`
 const Description = styled.p`
   margin: 20px 0;
 `;
+
+const Tabs = styled.div`
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  margin: 25px 0px;
+  gap: 10px;
+`;
+
+const Tab = styled.span<{ isActive: boolean }>`
+  text-align: center;
+  text-transform: uppercase;
+  font-size: 12px;
+  font-weight: 400;
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 7px 0px;
+  border-radius: 10px;
+  color: ${(props) =>
+  props.isActive ? props.theme.accentColor : props.theme.textColor};
+  a {
+    display: block;
+  }
+`;
+
 
 interface IRouteState {
   state: {
@@ -121,6 +144,10 @@ export default function Coin() {
 
   const [priceInfo, setPriceInfo] = useState<PriceData>();
 
+  // useMatch()  => url이 ()안에 있는 랜딩에 있는지!
+  const priceMatch = useMatch("/:coinId/price");
+  const chartMatch = useMatch("/:coinId/chart");
+
   const {coinId} = useParams()
   console.log(coinId)
 
@@ -183,6 +210,15 @@ export default function Coin() {
             </OverviewItem>
           </Overview>
 
+
+          <Tabs>
+            <Tab isActive={chartMatch !== null}>
+              <Link to={`/${coinId}/chart`}>Chart</Link>
+            </Tab>
+            <Tab isActive={priceMatch !== null}>
+              <Link to={`/${coinId}/price`}>Price</Link>
+            </Tab>
+          </Tabs>
           <Outlet />
         </>
       )}
