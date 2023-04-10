@@ -169,7 +169,9 @@ export default function Coin() {
               <span>{info?.open_source ? "Yes" : "No"}</span>
             </OverviewItem>
           </Overview>
+
           <Description>{info?.description}</Description>
+
           <Overview>
             <OverviewItem>
               <span>Total Suply:</span>
@@ -180,6 +182,7 @@ export default function Coin() {
               <span>{priceInfo?.max_supply}</span>
             </OverviewItem>
           </Overview>
+
           <Outlet />
         </>
       )}
@@ -188,6 +191,5 @@ export default function Coin() {
   }
 
 
-
-// https://api.coinpaprika.com/v1/coins/btc-bitcoin
-// https://api.coinpaprika.com/v1/tickers/btc-bitcoin
+// Nested Routes
+// /coinId 뒤에 / /chart /price 두 개 모두 사용하고 싶어!
