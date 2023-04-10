@@ -3,6 +3,8 @@ import React, {useEffect, useState} from "react";
 import styled from "styled-components";
 import Chart from ".//Chart"
 import Price from ".//Price"
+import {useQuery} from "react-query";
+import {fetchCoins} from "./api";
 
 const Container = styled.div`
   padding: 0 20px;
