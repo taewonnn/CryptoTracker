@@ -191,5 +191,6 @@ export default function Coin() {
   }
 
 
+
 // Nested Routes
 // /coinId 뒤에 / /chart /price 두 개 모두 사용하고 싶어!
