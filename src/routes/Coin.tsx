@@ -238,36 +238,49 @@ export default function Coin() {
 
 
 
-// Nested Routes
-// /coinId 뒤에 / /chart /price 두 개 모두 사용하고 싶어!
-
-
-
 // React Query 사용 전
+// export default function Coin() {
 //
-//   const [loading, setLoading] = useState(true);
+//   // useMatch()  => url이 ()안에 있는 랜딩에 있는지!
+//   const priceMatch = useMatch("/:coinId/price");
+//   const chartMatch = useMatch("/:coinId/chart");
 //
-//   const [info, setInfo] = useState<InfoData>();
+//   const {coinId} = useParams()
+//   console.log(coinId)
 //
-//   const [priceInfo, setPriceInfo] = useState<PriceData>();
+//   const {state} = useLocation() as IRouteState;
+//   console.log(state);
 //
 //
-//   useEffect(() => {
-//     (async () => {
-//       const infoData = await (
-//         await fetch(`https://api.coinpaprika.com/v1/coins/${coinId}`)
-//       ).json();
-//       console.log(infoData);
-//       setInfo(infoData);
-//       const priceData = await (
-//         await fetch(`https://api.coinpaprika.com/v1/tickers/${coinId}`)
-//       ).json();
-//       console.log(priceData);
-//       setPriceInfo(priceData);
-//       setLoading(false);
+//   // React Query 사용
+//   const {isLoading: infoLoading, data:infoData} = useQuery<InfoData>(['info', coinId], () => fetchCoinInfo(coinId))
+//   const {isLoading: tickersLoading, data: tickersData} = useQuery<PriceData>(['tickers',coinId], () => fetchCoinTickers(coinId))
 //
-//     })()
-//   }, [coinId])
+//   const loading = infoLoading || tickersLoading
+//
+// const [loading, setLoading] = useState(true);
+//
+// const [info, setInfo] = useState<InfoData>();
+//
+// const [priceInfo, setPriceInfo] = useState<PriceData>();
+//
+//
+// useEffect(() => {
+//   (async () => {
+//     const infoData = await (
+//       await fetch(`https://api.coinpaprika.com/v1/coins/${coinId}`)
+//     ).json();
+//     console.log(infoData);
+//     setInfo(infoData);
+//     const priceData = await (
+//       await fetch(`https://api.coinpaprika.com/v1/tickers/${coinId}`)
+//     ).json();
+//     console.log(priceData);
+//     setPriceInfo(priceData);
+//     setLoading(false);
+//
+//   })()
+// }, [coinId])
 //
 //
 //   return (
