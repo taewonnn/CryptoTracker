@@ -14,7 +14,3 @@ export default function Chart() {
     <h1>Chart</h1>
   )
 }
-
-
-
-// https://ohlcv-api.nomadcoders.workers.dev?coinId=btc-bitcoin
