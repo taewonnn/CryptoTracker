@@ -60,8 +60,21 @@ export default function Chart() {
               axisBorder: { show: false },
               axisTicks: { show: false },
               labels: { show: true },
-              categories: data ?.map((time) => Number(time.time_close * 1000))
+              type: "datetime",
+              categories: data ?.map((price) => Number(price.time_close))
             },
+            fill: {
+              type: "gradient",
+              gradient: { gradientToColors: ["#0be881"], stops: [0, 100]},
+            },
+            colors : ["#0fbcf9"],
+            tooltip: {
+              y: {
+                formatter : (value) => `$${value.toFixed(2)}`,
+
+
+              }
+            }
           }}
         />
       )}
