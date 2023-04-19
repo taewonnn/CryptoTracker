@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom/client';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import {ThemeProvider} from "styled-components";
-import {theme} from "./theme";
+import {darkTheme, lightTheme} from "./theme";
 import {RouterProvider} from "react-router-dom";
 import router from "./routes/Rotuer";
 import { useQuery } from "react-query"
@@ -20,7 +20,7 @@ const queryClient = new QueryClient();
 root.render(
   <React.StrictMode>
     <QueryClientProvider client={queryClient}>
-      <ThemeProvider theme={theme}>
+      <ThemeProvider theme={darkTheme}>
         <App />
         <RouterProvider router={router} />
       </ThemeProvider>
