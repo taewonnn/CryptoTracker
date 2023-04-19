@@ -22,7 +22,7 @@ root.render(
     <QueryClientProvider client={queryClient}>
       <ThemeProvider theme={darkTheme}>
         <App />
-        <RouterProvider router={router} />
+        {/*<RouterProvider router={router} />*/}
       </ThemeProvider>
     </QueryClientProvider>
   </React.StrictMode>
