@@ -4,6 +4,10 @@ import React, {useEffect, useState} from "react";
 import { useQuery } from "react-query"
 import {fetchCoins} from "./api";
 import {Helmet} from "react-helmet";
+import {useRecoilValue, useSetRecoilState} from "recoil";
+import {isDarkAtom} from "../atoms";
+
+
 
 const Container = styled.div`
   padding: 0 20px;
@@ -66,6 +70,7 @@ interface CoinInterface {
 }
 
 
+
 export default function Coins() {
 
 
@@ -88,6 +93,10 @@ export default function Coins() {
   // }, [])
 
   // react query 사용
+
+  const setDarkAtom = useSetRecoilState(isDarkAtom);
+  const toggleDarkAtom = () => setDarkAtom(prev => !prev);
+
   return (
     <Container>
       <Helmet>
@@ -95,6 +104,7 @@ export default function Coins() {
       </Helmet>
       <Header>
         <Title>코인</Title>
+        <button onClick={toggleDarkAtom}>Toggle Mode</button>
       </Header>
       {isLoading ? <Loader>Loading...</Loader> : <CoinsList>
         {data?.slice(0, 100).map((coin) => (
