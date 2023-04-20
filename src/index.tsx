@@ -8,6 +8,7 @@ import {RouterProvider} from "react-router-dom";
 import router from "./routes/Rotuer";
 import { useQuery } from "react-query"
 import {QueryClient, QueryClientProvider} from "react-query";
+import {RecoilRoot} from "recoil";
 
 
 const root = ReactDOM.createRoot(
@@ -17,14 +18,19 @@ const root = ReactDOM.createRoot(
 const queryClient = new QueryClient();
 
 
+
+
 root.render(
+
   <React.StrictMode>
-    <QueryClientProvider client={queryClient}>
-      <ThemeProvider theme={darkTheme}>
-        <App />
-        {/*<RouterProvider router={router} />*/}
-      </ThemeProvider>
-    </QueryClientProvider>
+    <RecoilRoot>
+      <QueryClientProvider client={queryClient}>
+        <ThemeProvider theme={darkTheme}>
+          <App />
+          {/*<RouterProvider router={router} />*/}
+        </ThemeProvider>
+      </QueryClientProvider>
+    </RecoilRoot>
   </React.StrictMode>
 );
 
