@@ -15,10 +15,10 @@ const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 
+
+// react - query
+// queryClient 생성
 const queryClient = new QueryClient();
-
-
-
 
 root.render(
 

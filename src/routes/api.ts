@@ -38,6 +38,10 @@ export function fetchCoinHistory(coinId: string) {
 }
 
 
+// react - query
+// queryClient 생성
+
+
 
 
 // https://ohlcv-api.nomadcoders.workers.dev?coinId=btc-bitcoin
