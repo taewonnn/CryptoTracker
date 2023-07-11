@@ -77,8 +77,9 @@ export default function Coins() {
   // React Query
   const { isLoading, data } = useQuery<CoinInterface[]>(["allCoins"], fetchCoins);
 
-  // const [coins, setCoins] = useState<CoinInterface[]>([]);
 
+  // react query 사용 없이 api 통신
+  // const [coins, setCoins] = useState<CoinInterface[]>([]);
   // const [loading, setLoading] = useState(true);
 
   // useEffect(() => {
@@ -93,7 +94,6 @@ export default function Coins() {
   // }, [])
 
   // react query 사용
-
   const setDarkAtom = useSetRecoilState(isDarkAtom);
   const toggleDarkAtom = () => setDarkAtom(prev => !prev);
 

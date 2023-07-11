@@ -41,6 +41,23 @@ export function fetchCoinHistory(coinId: string) {
 // react - query
 // queryClient 생성
 
+// 1. fetcher function 생성  - api.ts
+// fetch 함수는 promise를 return 해줘야한다
+
+export async function fetchCoins1() {
+
+  // 코드가 길어졌음
+  // const response = await fetch(`${BASE_URL}/coins`)
+  // const json = await response.json();
+  // return json;
+
+  // promise 방식으로 위에 코드를 짧게
+  return fetch(`${BASE_URL}/coins`)
+    .then((res) => res.json);
+
+
+}
+
 
 
 

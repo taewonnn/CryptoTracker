@@ -4,8 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="93c5c497-aece-4793-82f1-0e480073e40b" name="변경" comment="">
-      <change beforePath="$PROJECT_DIR$/src/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.tsx" afterDir="false" />
+    <list default="true" id="93c5c497-aece-4793-82f1-0e480073e40b" name="변경" comment="React query">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes/Coins.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/Coins.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/routes/api.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/api.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -18,6 +19,9 @@
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
+  </component>
+  <component name="PackageJsonUpdateNotifier">
+    <dismissed value="$PROJECT_DIR$/package.json" />
   </component>
   <component name="ProjectId" id="2PHsMDvEWTGnn4TARPBcfB2inuI" />
   <component name="ProjectViewState">
@@ -50,11 +54,31 @@
       <workItem from="1683125293403" duration="48000" />
       <workItem from="1683728486354" duration="17000" />
       <workItem from="1683797595962" duration="655000" />
-      <workItem from="1689078623575" duration="186000" />
+      <workItem from="1689078623575" duration="604000" />
     </task>
+    <task id="LOCAL-00001" summary="npm install">
+      <created>1689078822662</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1689078822662</updated>
+    </task>
+    <task id="LOCAL-00002" summary="React query">
+      <created>1689078847659</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1689078847659</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="npm install" />
+    <MESSAGE value="React query" />
+    <option name="LAST_COMMIT_MESSAGE" value="React query" />
   </component>
 </project>
