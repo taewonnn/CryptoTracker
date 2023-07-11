@@ -38,7 +38,10 @@ export function fetchCoinHistory(coinId: string) {
 }
 
 
-// react - query
+
+
+
+// react - query 개념
 // queryClient 생성
 
 // 1. fetcher function 생성  - api.ts
