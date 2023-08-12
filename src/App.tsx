@@ -11,6 +11,7 @@ import {isDarkAtom} from "./atoms";
 
 function App() {
 
+  // 다크모드
   const isDark = useRecoilValue(isDarkAtom);
 
   return (
