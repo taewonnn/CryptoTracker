@@ -4,8 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="93c5c497-aece-4793-82f1-0e480073e40b" name="변경" comment="React query">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="93c5c497-aece-4793-82f1-0e480073e40b" name="변경" comment="chore">
+      <change beforePath="$PROJECT_DIR$/src/routes/Coin.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/Coin.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -57,6 +57,7 @@
       <workItem from="1683797595962" duration="655000" />
       <workItem from="1689078623575" duration="985000" />
       <workItem from="1689169679972" duration="23000" />
+      <workItem from="1691841743716" duration="84000" />
     </task>
     <task id="LOCAL-00001" summary="npm install">
       <created>1689078822662</created>
@@ -93,7 +94,21 @@
       <option name="project" value="LOCAL" />
       <updated>1689079598469</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="주석">
+      <created>1691841771902</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1691841771902</updated>
+    </task>
+    <task id="LOCAL-00007" summary="chore">
+      <created>1691841779691</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1691841779691</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -102,6 +117,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="npm install" />
     <MESSAGE value="React query" />
-    <option name="LAST_COMMIT_MESSAGE" value="React query" />
+    <MESSAGE value="주석" />
+    <MESSAGE value="chore" />
+    <option name="LAST_COMMIT_MESSAGE" value="chore" />
   </component>
 </project>
