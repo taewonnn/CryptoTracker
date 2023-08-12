@@ -6,8 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="93c5c497-aece-4793-82f1-0e480073e40b" name="변경" comment="React query">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routes/Coins.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/Coins.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routes/api.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/api.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -16,6 +14,9 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitToolBoxStore">
+    <option name="projectConfigVersion" value="5" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -54,7 +55,8 @@
       <workItem from="1683125293403" duration="48000" />
       <workItem from="1683728486354" duration="17000" />
       <workItem from="1683797595962" duration="655000" />
-      <workItem from="1689078623575" duration="919000" />
+      <workItem from="1689078623575" duration="985000" />
+      <workItem from="1689169679972" duration="23000" />
     </task>
     <task id="LOCAL-00001" summary="npm install">
       <created>1689078822662</created>
@@ -84,7 +86,14 @@
       <option name="project" value="LOCAL" />
       <updated>1689079353796</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="React query">
+      <created>1689079598469</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1689079598469</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
