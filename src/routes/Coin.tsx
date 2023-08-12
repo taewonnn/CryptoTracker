@@ -145,6 +145,8 @@ export default function Coin() {
   const priceMatch = useMatch("/:coinId/price");
   const chartMatch = useMatch("/:coinId/chart");
 
+  // useParams
+  // 파라미터 값을 url을 통해서 넘겨 받은 페이지에서 사용할 수 있도록 도와줌
   const {coinId} = useParams()
   console.log(coinId)
 
