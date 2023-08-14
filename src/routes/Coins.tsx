@@ -77,7 +77,9 @@ export default function Coins() {
   // React Query
   // useQuery()에는 두 가지 키가 필요하다!  첫번째에는 query의 고유 식별자, 두번째는 fetcher함수!
   // useQuery(고유식별자, fetcher함수)
+
   const { isLoading, data } = useQuery<CoinInterface[]>(["allCoins"], fetchCoins);
+
   // fetchCoins 함수가 로딩 중이라면 isloading에서 true / false로 알 수 있다.
   // fetchCoins는 res.json을 return하는데, 모두 완료하면 이 json을  useQuery의 data에 넣어준다!
 
