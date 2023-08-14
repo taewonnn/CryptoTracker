@@ -155,6 +155,7 @@ export default function Coin() {
 
 
   // React Query 사용
+
   // isLoading -> 로딩중 확인
   // data -> data 넘어온 것
   const {isLoading: infoLoading, data:infoData} = useQuery<InfoData>(['info', coinId], () => fetchCoinInfo(coinId))
