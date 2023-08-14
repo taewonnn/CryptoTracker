@@ -4,10 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="93c5c497-aece-4793-82f1-0e480073e40b" name="변경" comment="주석">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routes/Coin.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/Coin.tsx" afterDir="false" />
-    </list>
+    <list default="true" id="93c5c497-aece-4793-82f1-0e480073e40b" name="변경" comment="주석" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -58,7 +55,7 @@
       <workItem from="1683797595962" duration="655000" />
       <workItem from="1689078623575" duration="985000" />
       <workItem from="1689169679972" duration="23000" />
-      <workItem from="1691841743716" duration="103000" />
+      <workItem from="1691841743716" duration="190000" />
     </task>
     <task id="LOCAL-00001" summary="npm install">
       <created>1689078822662</created>
@@ -116,7 +113,14 @@
       <option name="project" value="LOCAL" />
       <updated>1691841837646</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="주석">
+      <created>1691841907304</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1691841907304</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

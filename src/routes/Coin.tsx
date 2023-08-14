@@ -200,7 +200,9 @@ export default function Coin() {
       <Header>
         <Title>{state?.name ? state.name : loading ? "loading..." : infoData?.name}</Title>
       </Header>
+
       {/*{loading ? <Loader>Loading...</Loader> : <span>{priceInfo?.quotes.USD.price}</span>}*/}
+
       {loading ? (
         <Loader>Loading...</Loader>
       ) : (
