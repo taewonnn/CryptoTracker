@@ -1,14 +1,12 @@
-import { Link } from "react-router-dom";
-import styled from "styled-components";
-import React, {useEffect, useState} from "react";
-import { useQuery } from "react-query"
-import {fetchCoins} from "./api";
-import {Helmet} from "react-helmet";
-import {useRecoilValue, useSetRecoilState} from "recoil";
-import {isDarkAtom} from "../atoms";
+import { useQuery } from 'react-query';
+import { Link } from 'react-router-dom';
+import styled from 'styled-components';
+import { fetchCoins } from '../api';
+import { Helmet } from 'react-helmet';
+import { useSetRecoilState } from 'recoil';
+import { isDarkAtom } from '../atoms';
 
-
-
+/** style Start */
 const Container = styled.div`
   padding: 0 20px;
   max-width: 480px;
@@ -16,132 +14,151 @@ const Container = styled.div`
 `;
 
 const Header = styled.header`
-  height: 15vh;
+  height: 10vh;
   display: flex;
   justify-content: center;
   align-items: center;
 `;
 
-const CoinsList = styled.ul``;
+const CoinList = styled.ul``;
 
 const Coin = styled.li`
-  background-color: white;
-  color: ${(props) => props.theme.bgColor};
-  border-radius: 15px;
+  background-color: ${(props) => props.theme.cardBgColor};
+  color: ${(props) => props.theme.textColor};
   margin-bottom: 10px;
+  padding: 20px;
+  border: 1px solid white;
+  border-radius: 15px;
   a {
     padding: 20px;
-    transition: color 0.2s ease-in;
+    transition: color 0.3s ease-in;
+    /* display: block; */
     display: flex;
     align-items: center;
   }
   &:hover {
     a {
-      color: ${(props) => props.theme.textColor};
+      color: ${(props) => props.theme.accentColor};
     }
   }
 `;
 
 const Title = styled.h1`
-  font-size: 48px;
+  font-size: 20px;
   color: ${(props) => props.theme.accentColor};
 `;
 
 const Loader = styled.span`
   text-align: center;
   display: block;
-  color: red;
-`
+`;
 
 const Img = styled.img`
-  width: 35px;
-  height: 35px;
+  width: 30px;
+  height: 30px;
   margin-right: 10px;
-`
+`;
 
-interface CoinInterface {
-  id: string,
-  name: string,
-  symbol: string,
-  rank: number,
-  is_new: boolean,
-  is_active: boolean,
-  type: string,
+const ToggleContainer = styled.div`
+  height: 30px;
+  width: 60px;
+  border-radius: 15px;
+  padding: 0.25rem;
+  display: flex;
+  cursor: pointer;
+`;
+
+const ToggleBall = styled.div`
+  height: 100%;
+  width: 50%;
+  background-color: white;
+  border-radius: 50%;
+  transition: transform 0.2s linear;
+`;
+
+/** style End */
+
+// coin data type
+interface Icoin {
+  id: string;
+  symbol: string;
+  name: string;
+  image: string;
+  current_price: number;
+  market_cap: number;
+  market_cap_rank: number;
+  fully_diluted_valuation: number;
+  total_volume: number;
+  high_24h: number;
+  low_24h: number;
+  price_change_24h: number;
+  price_change_percentage_24h: number;
+  market_cap_change_24h: number;
+  market_cap_change_percentage_24h: number;
+  circulating_supply: number;
+  total_supply: number;
+  max_supply: number;
+  ath: number;
+  ath_change_percentage: number;
+  ath_date: string;
+  atl: number;
+  atl_change_percentage: number;
+  atl_date: string;
+  roi: object;
+  last_update: string;
 }
 
+function Coins() {
+  // react Query 적용
+  // @tanstack/react-query -> useQuery(['queryKey], fetcher함수, 선택적인 obj)
+  // 💡 useQuery는 isLoading이라는 boolean값을 return한다 -> fetcher함수가 끝난다면 fetcher함수에서 return한 json을 data에 저장해준다!
+  const { isLoading, data } = useQuery<Icoin[]>(['allcoins'], fetchCoins, {
+    // 개발용 -> 첫 번째 요청 이후에 추가 요청을 전송X
+    staleTime: Infinity,
+  });
+  console.log(data);
 
-
-export default function Coins() {
-
-
-  // React Query
-  // useQuery()에는 두 가지 키가 필요하다!  첫번째에는 query의 고유 식별자, 두번째는 fetcher함수!
-  // useQuery(고유식별자, fetcher함수)
-
-  const { isLoading, data } = useQuery<CoinInterface[]>(["allCoins"], fetchCoins);
-
-  // fetchCoins 함수가 로딩 중이라면 isloading에서 true / false로 알 수 있다.
-  // fetchCoins는 res.json을 return하는데, 모두 완료하면 이 json을  useQuery의 data에 넣어준다!
-
-
-  // react query 사용 없이 api 통신
-  // const [coins, setCoins] = useState<CoinInterface[]>([]);
-  // const [loading, setLoading] = useState(true);
-
-  // useEffect(() => {
-  //   (async() => {
-  //     const response = await fetch('https://api.coinpaprika.com/v1/coins');
-  //     const json = await response.json();
-  //     console.log(json);
-  //     setCoins(json.slice(0, 100));
-  //     setLoading(false);
-  //   } )();
-  //
-  // }, [])
-
-  // react query 사용
+  // recoil - useRecoilState()
+  // value를 설정해주는 함수  React setState함수와 같은 방식으로 작동!
+  // useRecoilState(atom) -> atom을 변경하는 함수를 반환해준다.
   const setDarkAtom = useSetRecoilState(isDarkAtom);
-  const toggleDarkAtom = () => setDarkAtom(prev => !prev);
+  const toggleDarkAtom = () => {
+    setDarkAtom((prev) => !prev);
+  };
 
   return (
     <Container>
+      {/* chrome Tab 제목 */}
       <Helmet>
-        <title>코인</title>
+        <title>Coin</title>
       </Helmet>
       <Header>
-        <Title>코인</Title>
-        <button onClick={toggleDarkAtom}>Toggle Mode</button>
+        <Title>Coin</Title>
+        <ToggleContainer>
+          <ToggleBall onClick={toggleDarkAtom} />
+        </ToggleContainer>
       </Header>
-      {isLoading ? <Loader>Loading...</Loader> : <CoinsList>
-        {data?.slice(0, 100).map((coin) => (
-          <Coin key={coin.id}>
-            <Link to={`/${coin.id}`} state={coin.name}>
-              <Img src={`https://cryptocurrencyliveprices.com/img/${coin.id}.png`}/>
-              {coin.name} &rarr;
-            </Link>
-          </Coin>
-        ))}
-      </CoinsList>}
+      {isLoading ? (
+        <Loader>Loading...</Loader>
+      ) : (
+        <CoinList>
+          {data?.map((coin) => {
+            return (
+              <Coin key={coin.id}>
+                <Link to={`/${coin.id}`} state={{ name: coin.name }}>
+                  <Img src={`${coin.image}`} alt="coinImg"></Img>
+                  {coin.name} &rarr;
+                </Link>
+              </Coin>
+            );
+          })}
+        </CoinList>
+      )}
     </Container>
   );
-
-
-  // 기존 react query 사용 전
-  // return (
-  //   <Container>
-  //     <Header>
-  //       <Title>코인</Title>
-  //     </Header>
-  //     {loading ? <Loader>Loading...</Loader> : <CoinsList>
-  //       {coins.map((coin) => (
-  //         <Coin key={coin.id}>
-  //           <Link to={`/${coin.id}`} state={coin.name}>
-  //             <Img src={`https://cryptocurrencyliveprices.com/img/${coin.id}.png`}/>
-  //             {coin.name} &rarr;
-  //           </Link>
-  //         </Coin>
-  //       ))}
-  //     </CoinsList>}
-  //   </Container>
-  // );
 }
+
+export default Coins;
+
+// 함수 즉시 실행 가능 트릭 ->
+// (() => console.log(1))();

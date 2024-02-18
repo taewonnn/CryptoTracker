@@ -1,8 +1,10 @@
+// react-query 적용 전
+
+import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { Link, useLocation, useParams, Outlet, useMatch } from 'react-router-dom';
-import { useQuery } from 'react-query';
-import { fetchCoinInfo } from '../api';
-import { Helmet } from 'react-helmet';
+import Chart from './Chart';
+import Price from './Price';
 
 /** style Start */
 const Container = styled.div`
@@ -83,38 +85,65 @@ interface ILocation {
 
 interface IInfoData {
   id: string;
-  symbol: string;
   name: string;
-  web_slug: string;
-  asset_platform_id: object;
-  platforms: object;
-  detail_platforms: object;
-  block_time_in_minutes: number;
-  hashing_algorithm: string;
-  categories: object;
-  preview_listing: boolean;
-  public_notice: object;
-  additional_notices: object;
-  description: { en: string };
-  links: object;
-  image: object;
-  country_origin: string;
-  genesis_date: string;
-  sentiment_votes_up_percentage: number;
-  sentiment_votes_down_percentage: number;
-  watchlist_portfolio_users: number;
-  market_cap_rank: number;
-  market_data: {
-    current_price: { krw: number };
-    total_supply: number;
-    max_supply: number;
-  };
-  community_data: object;
-  developer_data: object;
-  status_updates: object;
-  last_updated: string;
-  tickers: object;
+  symbol: string;
+  rank: number;
+  is_new: boolean;
+  is_active: boolean;
+  type: string;
+  logo: string;
+  tags?: object;
+  team?: object;
+  description: string;
+  message: string;
+  open_source: boolean;
+  started_at: string;
+  development_status: string;
+  hardware_wallet: boolean;
+  proof_type: string;
+  org_structure: string;
+  hash_algorithm: string;
+  links?: object;
+  links_extended: object;
+  whitepaper?: object;
+  first_data_at: string;
+  last_data_at: string;
 }
+
+interface IPriceData {
+  id: string;
+  name: string;
+  symbol: string;
+  rank: number;
+  circulating_supply: number;
+  total_supply: number;
+  max_supply: number;
+  beta_value: number;
+  first_data_at: string;
+  last_updated: string;
+  quotes: {
+    USD: {
+      price: number;
+      volume_24h: number;
+      volume_24h_change_24h: number;
+      market_cap: number;
+      market_cap_change_24h: number;
+      percent_change_15m: number;
+      percent_change_30m: number;
+      percent_change_1h: number;
+      percent_change_6h: number;
+      percent_change_12h: number;
+      percent_change_24h: number;
+      percent_change_7d: number;
+      percent_change_30d: number;
+      percent_change_1y: number;
+      ath_price: number;
+      ath_date: string;
+      percent_from_price_ath: number;
+    };
+  };
+}
+
 /** interface End */
 
 function Coin() {
@@ -151,70 +180,72 @@ function Coin() {
   const priceMatch = useMatch('/:coinId/price');
   const chartMatch = useMatch('/:coinId/chart');
 
-  // react-query 적용
-  // 아래는 coinInfo / coinTrickers 두 가지 정보 fetch
-  // @tanstack/react-query -> useQuery(['queryKey], fetcher함수, 선택적인 obj)
-  // isLoading / data 중복으로 사용 못하니 각각 구분위해 아래처럼 작성 {isLoaidng: ~Loading, data: ~Data}
+  // 로딩 상태
+  const [loading, setLoading] = useState(true);
 
-  // coin 정보
-  const { isLoading: infoLoading, data: infoData } = useQuery<IInfoData>(
-    ['info', coinId],
-    () => fetchCoinInfo(coinId),
-    {
-      // 개발용 -> 첫 번째 요청 이후에 추가 요청을 전송X
-      staleTime: Infinity,
-    }
-    // {
-    //   // 5초 마다 해당 쿼리를 refetch한다!
-    //   refetchInterval: 5000,
-    // }
-  );
-  // infodata 확인
-  // console.log('info!!!', infoData);
+  // 코인 정보
+  const [info, setInfo] = useState<IInfoData>();
+  // 코인 가격
+  const [priceInfo, setPriceInfo] = useState<IPriceData>();
+
+  // 코인 정보 + 가격 정보 가져오기
+  useEffect(() => {
+    (async () => {
+      // coin 정보
+      const infoData = await (
+        await fetch(`https://ohlcv-api.nomadcoders.workers.dev/?coinId=${coinId}`)
+      ).json();
+      console.log('info : ', infoData);
+      // coin 가격 정보
+      const priceData = await (
+        await fetch(`https://api.coinpaprika.com/v1/tickers/${coinId}`)
+      ).json();
+      console.log('price : ', priceData);
+
+      // data 담아주기
+      setInfo(infoData);
+      setPriceInfo(priceData);
+      // 로딩 상태 변경
+      setLoading(false);
+    })();
+    // [coinId] => coinId가 변한다면 useEffect안의 코드들이 다시 실행!
+  }, [coinId]);
 
   return (
     <Container>
-      {/* chrome Tab 제목 */}
-      <Helmet>
-        <title>{state?.name ? state.name : infoLoading ? 'Loading...' : infoData?.name}</title>
-      </Helmet>
       <Header>
-        <Title>{state?.name ? state.name : infoLoading ? 'Loading...' : infoData?.name}</Title>
+        <Title>{state?.name ? state.name : loading ? 'Loading...' : info?.name}</Title>
       </Header>
-      {infoLoading ? (
+
+      {loading ? (
         <Loader>Loading...</Loader>
       ) : (
         <>
           <Overview>
             <OverviewItem>
               <span>Rank:</span>
-              <span>{infoData?.market_cap_rank}</span>
+              <span>{info?.rank}</span>
             </OverviewItem>
             <OverviewItem>
               <span>Symbol:</span>
-              <span>${infoData?.symbol}</span>
+              <span>${info?.symbol}</span>
             </OverviewItem>
             <OverviewItem>
-              <span>Price:</span>
-              <span>{infoData?.market_data.current_price.krw}</span>
+              <span>Open Source:</span>
+              <span>{info?.open_source ? 'Yes' : 'No'}</span>
             </OverviewItem>
           </Overview>
 
-          <Description>
-            {/* 설명 300자 이상 자르기 */}
-            {infoData?.description.en && infoData?.description.en.length > 300
-              ? `${infoData.description.en.substring(0, 300)}...`
-              : infoData?.description?.en}
-          </Description>
+          <Description>{info?.description}</Description>
 
           <Overview>
             <OverviewItem>
               <span>Total Suply:</span>
-              <span>{infoData?.market_data.total_supply}</span>
+              <span>{priceInfo?.total_supply}</span>
             </OverviewItem>
             <OverviewItem>
               <span>Max Supply:</span>
-              <span>{infoData?.market_data.max_supply}</span>
+              <span>{priceInfo?.max_supply}</span>
             </OverviewItem>
           </Overview>
 
@@ -226,8 +257,7 @@ function Coin() {
               <Link to={`/${coinId}/price`}>Price</Link>
             </Tab>
           </Tabs>
-          {/* useOutletContext -> context = {넘겨줄 데이터} */}
-          <Outlet context={{ coinId }} />
+          <Outlet />
         </>
       )}
     </Container>

@@ -1,5 +1,9 @@
-export default function Price() {
-  return (
-    <h1>Price</h1>
-  );
+/** interface Start */
+
+/** interface End */
+
+function Price() {
+  return <div>price</div>;
 }
+
+export default Price;
